@@ -12,15 +12,24 @@ namespace jashan
         static void Main(string[] args)
         {
             Console.WriteLine("Downloading File");
-            download();
+            Download();
             Console.ReadLine();
         }
-        static void download()
+        static async void Download()
         {
-            Task.Run(() => {
-                Thread.Sleep(3000);
-                Console.WriteLine("Download Complete");
-            });
+            HttpClient client = new HttpClient();
+            var data = await client.GetStringAsync("http://ibm.com");
+
+            Console.WriteLine(data);
+            List myList = new List();
+        }
+    }
+    class Network
+    {
+        static public Task Download()
+        {
+
+            return Task.Run(() => Thread.Sleep(3000));
         }
     }
 }
